@@ -1,0 +1,30 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+build/
+*.apk
+*.ipa
+
+# Firebase
+.env
+.env.local
+firebaseConfig.json
+serviceAccountKey.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+node_modules/
+dist/

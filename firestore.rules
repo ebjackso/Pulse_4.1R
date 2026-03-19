@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Reports: public read, authenticated write with validation
+    match /reports/{reportId} {
+      allow read: if true; // Public read
+
+      allow create: if
+        request.auth != null &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.text is string &&
+        request.resource.data.text.size() > 0 &&
+        request.resource.data.text.size() <= 280 &&
+        request.resource.data.location is latlng &&
+        request.resource.data.timestamp is timestamp &&
+        request.resource.data.status == 'active';
+
+      allow update, delete: if
+        request.auth != null &&
+        resource.data.userId == request.auth.uid;
+    }
+
+    // Users: read/write only own document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Summaries: public read, only Cloud Functions write
+    match /summaries/{summaryId} {
+      allow read: if true;
+      allow write: if request.auth == null; // Only backend (no auth) can write
+    }
+
+    // Storage bucket rules (for photos)
+    match /reports/{userId}/{allPaths=**} {
+      allow read: if true; // Public read
+      allow write: if
+        request.auth != null &&
+        request.auth.uid == userId &&
+        request.resource.size < 5 * 1024 * 1024 && // Max 5MB
+        request.resource.contentType.matches('image/.*');
+    }
+  }
+}
