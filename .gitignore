@@ -13,6 +13,7 @@ build/
 .env.local
 firebaseConfig.json
 serviceAccountKey.json
+google-services.json
 
 # IDEs
 .vscode/
