@@ -1,7 +1,24 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.INTERNET" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.pulse">
+
+    <!-- Location permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Camera for photo reports -->
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Storage for image picking -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    ...
 </manifest>
+
+<application>
+<meta-data
+android:name="com.google.android.geo.API_KEY"
+android:value="YOUR_MAPS_API_KEY"/>
+    </application>
