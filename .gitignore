@@ -14,6 +14,12 @@ build/
 firebaseConfig.json
 serviceAccountKey.json
 
+# Web
+web/node_modules/
+web/dist/
+web/.env.local
+web/.env.production.local
+
 # IDEs
 .vscode/
 .idea/
