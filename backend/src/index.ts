@@ -10,7 +10,7 @@ const storage = admin.storage();
 // Rate limiting config
 const REPORTS_PER_HOUR = 5;
 const GROK_API_KEY = process.env.GROK_API_KEY;
-const GROK_API_URL = "https://api.x.ai/v1/chat/completions";
+const GROK_API_URL = "https://api.x.ai/v1/";
 
 interface ReportSubmission {
   text: string;
